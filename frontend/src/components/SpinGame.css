@@ -1,0 +1,208 @@
+.wheel-outer {
+    width: 450px;
+    height: 450px;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px;
+    background-color: #f0f0f0; /* Example theme color */
+}
+
+
+.wheel-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 50%;
+    padding: 15px;
+    background: linear-gradient(135deg, #FF4E4E, #FF6B6B);
+    box-shadow: 0 0 30px rgba(255, 78, 78, 0.4);
+    overflow: hidden;
+}
+
+.wheel-border {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 50%;
+    background: #fff;
+    padding: 3px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.wheel-lights {
+    position: absolute;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    background: repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 255, 255, 0.15) 0deg 10deg,
+        transparent 10deg 20deg
+    );
+    z-index: 3;
+    pointer-events: none;
+    animation: rotate 20s linear infinite;
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+    background: #fff;
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.wheel-section {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform-origin: 100% 100%;
+    clip-path: polygon(100% 50%, 0 0, 0 100%);
+    border: 2px solid #fff; /* Example border for sections */
+}
+
+
+.wheel-section::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1),
+        transparent 50%
+    );
+}
+
+.wheel-section::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.1),
+        transparent 50%
+    );
+}
+
+.prize-text {
+    position: absolute;
+    width: auto; /* Change to auto for flexible width */
+    max-width: 120px; /* Set a maximum width */
+    text-align: center;
+    color: #333; /* Change text color to match theme */
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    left: 50%;
+    top: 25px;
+    transform: translateX(-50%); /* Center the text */
+}
+
+
+
+.wheel-center {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #FF4E4E, #FF6B6B);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    border: 5px solid #fff;
+    box-shadow: 
+        0 0 0 3px #FF4E4E,
+        0 0 20px rgba(255, 78, 78, 0.4);
+}
+
+.wheel-arrow {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 40px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        0 0 0 2px #FF4E4E;
+}
+
+.spin-button {
+    background: linear-gradient(45deg, #FF4E4E, #FF6B6B);
+    border: none;
+    color: white;
+    padding: 16px 45px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    border-radius: 30px;
+    margin-top: 40px;
+    box-shadow: 0 5px 15px rgba(255, 78, 78, 0.3);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.spin-button:hover:not(:disabled) {
+    background: linear-gradient(45deg, #FF6B6B, #FF4E4E);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 78, 78, 0.4);
+}
+
+.spin-button:disabled {
+    background: #424242;
+    cursor: not-allowed;
+    color: #757575;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.mt-4 {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Improve spin animation smoothness */
+@media (prefers-reduced-motion: no-preference) {
+    .wheel {
+        will-change: transform;
+        backface-visibility: hidden;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+}

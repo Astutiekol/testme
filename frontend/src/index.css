@@ -1,0 +1,556 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+    --purple-primary: #9333ea;
+    --purple-light: #a855f7;
+    --purple-dark: #7c3aed;
+    --card-bg: rgba(17, 17, 17, 0.7);
+    --card-border: rgba(147, 51, 234, 0.2);
+}
+
+/* Base styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #000000;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 60px;
+    overflow: hidden;
+}
+
+.stars-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    animation: stars 4s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes stars {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-200px);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.digidraw-text {
+    color: var(--purple-primary);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #9333ea 0%, #c026d3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.action-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.upload-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #9333ea;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.upload-button:hover {
+    background: #a855f7;
+    transform: translateY(-1px);
+}
+
+.upload-icon {
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--purple-light);
+    border-color: var(--purple-light);
+    transform: translateY(-2px);
+}
+
+.social-icon {
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover .social-icon {
+    color: white;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.ai-robot {
+    width: 400px;
+    height: 400px;
+    color: #9333ea;
+    animation: float 3s ease-in-out infinite;
+    position: absolute;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.3));
+}
+
+.partnership-orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: orbit 20s linear infinite;
+}
+
+.partner-logo {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(147, 51, 234, 0.1);
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    border-radius: 12px;
+    color: #9333ea;
+    transition: all 0.3s ease;
+}
+
+.partner-logo:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+.partner-logo:nth-child(2) { top: 30%; right: 0; }
+.partner-logo:nth-child(3) { bottom: 0; right: 30%; }
+.partner-logo:nth-child(4) { bottom: 0; left: 30%; }
+.partner-logo:nth-child(5) { top: 30%; left: 0; }
+
+.partner-logo:hover {
+    background: rgba(147, 51, 234, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+}
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-section {
+        padding: 100px 0 40px;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .action-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Navigation */
+.nav-container {
+    transition: all 0.3s ease;
+    padding: 1rem 0;
+}
+
+.nav-container.scrolled {
+    background: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 0;
+}
+
+.nav-inner {
+    max-width: 1200px;
+    padding: 0 1.5rem;
+}
+
+.navbar-brand {
+    color: var(--purple-primary) !important;
+    font-weight: 500;
+    font-size: 1.125rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.brand-icon {
+    color: var(--purple-primary);
+    transition: color 0.2s ease;
+}
+
+.navbar-brand:hover .brand-icon {
+    color: var(--purple-light);
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.25rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem !important;
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    margin: 0 0.125rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sign-in-btn {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    transition: all 0.2s ease;
+    background: transparent;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.sign-in-btn:hover {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.get-started-btn {
+    background: var(--purple-primary);
+    color: white !important;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.get-started-btn:hover {
+    background: var(--purple-light);
+    transform: translateY(-1px);
+}
+
+/* Lottery Page */
+.lottery-page {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    border: 1px solid var(--card-border);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.card-header {
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--card-border);
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.pool-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.pool-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--purple-primary);
+    box-shadow: 0 4px 20px rgba(147, 51, 234, 0.2);
+}
+
+.pool-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.pool-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.pool-prize {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.text-purple-light {
+    color: var(--purple-light) !important;
+}
+
+.pool-status {
+    background: rgba(147, 51, 234, 0.2);
+    color: var(--purple-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+}
+
+.pool-info {
+    margin-bottom: 1.5rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.pool-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn-secondary {
+    background: var(--purple-primary) !important;
+    border: none !important;
+    padding: 0.75rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-secondary:hover {
+    background: var(--purple-light) !important;
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: transparent !important;
+    color: var(--purple-light) !important;
+    border: 1px solid var(--purple-primary) !important;
+    padding: 0.75rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-outline:hover {
+    background: rgba(147, 51, 234, 0.1) !important;
+    transform: translateY(-1px);
+}
+
+.winners-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.winner-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0.75rem;
+    border: 1px solid var(--card-border);
+    transition: all 0.2s ease;
+}
+
+.winner-card:hover {
+    border-color: var(--purple-primary);
+    transform: translateX(4px);
+}
+
+.winner-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: white;
+}
+
+.winner-address {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.winner-prize {
+    text-align: right;
+}
+
+.prize-amount {
+    display: block;
+    color: var(--purple-light);
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.prize-date {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: rgba(17, 17, 17, 0.98);
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link {
+        padding: 0.75rem 1rem !important;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        width: 100%;
+        padding-top: 0.5rem;
+    }
+
+    .sign-in-btn,
+    .get-started-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .lottery-page {
+        padding: 1rem;
+    }
+}
+
+.mt-24 {
+    margin-top: 6rem;
+}
+
+.z-index-1 {
+    z-index: 1;
+}

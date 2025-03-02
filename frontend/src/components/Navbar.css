@@ -1,0 +1,65 @@
+/* src/navbar.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the navbar */
+.navbar {
+  @apply bg-gray-800;
+}
+
+.navbar-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.navbar-content {
+  @apply flex items-center justify-between h-16;
+}
+
+.navbar-brand {
+  @apply flex-shrink-0;
+}
+
+.navbar-brand-link {
+  @apply text-white text-lg font-bold;
+}
+
+.navbar-links {
+  @apply hidden md:flex items-baseline space-x-4;
+}
+
+.navbar-link {
+  @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+}
+
+.navbar-wallet {
+  @apply hidden md:block;
+}
+
+.navbar-toggle {
+  @apply -mr-2 flex md:hidden;
+}
+
+.navbar-toggle-button {
+  @apply inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white;
+}
+
+.navbar-toggle-icon {
+  @apply h-6 w-6;
+}
+
+.navbar-mobile-menu {
+  @apply md:hidden;
+}
+
+.navbar-mobile-menu-content {
+  @apply px-2 pt-2 pb-3 space-y-1 sm:px-3;
+}
+
+.navbar-mobile-menu-link {
+  @apply text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium;
+}
+
+.navbar-mobile-menu-wallet {
+  @apply mt-4;
+}

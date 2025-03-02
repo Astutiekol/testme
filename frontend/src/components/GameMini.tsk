@@ -1,0 +1,192 @@
+import random
+import sys
+
+# Warna untuk pesan
+MERAH = "\033[91m"
+HIJAU = "\033[92m"
+KUNING = "\033[93m"
+BIRU = "\033[94m"
+RESET = "\033[0m"
+
+def main_menu():
+    print(f"\n{KUNING}=== MENU UTAMA EDUGAME ===")
+    print("1. Kuis Matematika")
+    print("2. Tebak Vocabulary")
+    print("3. Tebak Ibu Kota")
+    print("4. Kuis Sains Dasar")
+    print("5. Keluar")
+    print("======================={RESET}")
+    
+    while True:
+        pilihan = input("Pilih game (1-5): ")
+        if pilihan in ['1','2','3','4','5']:
+            return int(pilihan)
+        print(f"{MERAH}Input tidak valid!{RESET}")
+
+def math_quiz():
+    score = 0
+    total_soal = 5
+    print(f"\n{BIRU}=== KUIS MATEMATIKA DASAR ===")
+    print("Jawab soal operasi bilangan berikut!")
+    print(f"=================================={RESET}")
+    
+    for i in range(total_soal):
+        num1 = random.randint(1, 20)
+        num2 = random.randint(1, 20)
+        operator = random.choice(['+', '-', '×'])
+        
+        if operator == '+':
+            jawaban = num1 + num2
+        elif operator == '-':
+            num1, num2 = sorted([num1, num2], reverse=True)
+            jawaban = num1 - num2
+        else:
+            num1 = random.randint(1, 10)
+            num2 = random.randint(1, 10)
+            jawaban = num1 * num2
+        
+        print(f"\nSoal {i+1}: {num1} {operator} {num2} = ?")
+        try:
+            user_answer = int(input("Jawaban: "))
+        except ValueError:
+            print(f"{MERAH}Harap masukkan angka!{RESET}")
+            continue
+            
+        if user_answer == jawaban:
+            print(f"{HIJAU}Benar! +20 poin{RESET}")
+            score += 20
+        else:
+            print(f"{MERAH}Salah. Jawaban benar: {jawaban}{RESET}")
+    
+    print(f"\n{KUNING}Total Skor: {score}/100{RESET}")
+    return score
+
+def vocabulary_quiz():
+    vocabulary = {
+        "Book": "Buku",
+        "School": "Sekolah",
+        "Computer": "Komputer",
+        "Teacher": "Guru",
+        "Science": "Ilmu Pengetahuan"
+    }
+    score = 0
+    print(f"\n{BIRU}=== TEBAK VOCABULARY ===")
+    print("Terjemahkan kata berikut ke Bahasa Indonesia!")
+    print(f"============================{RESET}")
+    
+    words = list(vocabulary.items())
+    random.shuffle(words)
+    
+    for i, (en, id) in enumerate(words[:5], 1):
+        print(f"\nKata {i}: {en}")
+        user_answer = input("Terjemahan: ").strip().title()
+        
+        if user_answer == id:
+            print(f"{HIJAU}Benar! +20 poin{RESET}")
+            score += 20
+        else:
+            print(f"{MERAH}Salah. Jawaban benar: {id}{RESET}")
+    
+    print(f"\n{KUNING}Total Skor: {score}/100{RESET}")
+    return score
+
+def capital_quiz():
+    capitals = {
+        "Indonesia": "Jakarta",
+        "Malaysia": "Kuala Lumpur",
+        "Jepang": "Tokyo",
+        "Prancis": "Paris",
+        "Australia": "Canberra"
+    }
+    score = 0
+    print(f"\n{BIRU}=== TEBAK IBU KOTA ===")
+    print("Sebutkan ibu kota negara berikut!")
+    print(f"============================{RESET}")
+    
+    countries = list(capitals.items())
+    random.shuffle(countries)
+    
+    for i, (country, capital) in enumerate(countries[:5], 1):
+        print(f"\nNegara {i}: {country}")
+        user_answer = input("Ibu Kota: ").strip().title()
+        
+        if user_answer == capital:
+            print(f"{HIJAU}Benar! +20 poin{RESET}")
+            score += 20
+        else:
+            print(f"{MERAH}Salah. Jawaban benar: {capital}{RESET}")
+    
+    print(f"\n{KUNING}Total Skor: {score}/100{RESET}")
+    return score
+
+def science_quiz():
+    questions = [
+        {
+            "pertanyaan": "Planet terdekat dari matahari?",
+            "jawaban": "Merkurius",
+            "pilihan": ["Venus", "Merkurius", "Bumi", "Mars"]
+        },
+        {
+            "pertanyaan": "Zat yang diperlukan untuk fotosintesis?",
+            "jawaban": "Karbon Dioksida",
+            "pilihan": ["Oksigen", "Nitrogen", "Karbon Dioksida", "Hidrogen"]
+        },
+        {
+            "pertanyaan": "Satelit alami Bumi?",
+            "jawaban": "Bulan",
+            "pilihan": ["Mars", "Venus", "Bulan", "Deimos"]
+        }
+    ]
+    score = 0
+    print(f"\n{BIRU}=== KUIS SAINS DASAR ===")
+    print("Pilih jawaban yang benar!")
+    print(f"========================{RESET}")
+    
+    random.shuffle(questions)
+    
+    for i, q in enumerate(questions[:3], 1):
+        print(f"\n{i}. {q['pertanyaan']}")
+        random.shuffle(q['pilihan'])
+        for idx, option in enumerate(q['pilihan'], 1):
+            print(f"   {idx}. {option}")
+            
+        try:
+            user_choice = int(input("Pilihan (1-4): ")) - 1
+            if q['pilihan'][user_choice] == q['jawaban']:
+                print(f"{HIJAU}Benar! +30 poin{RESET}")
+                score += 30
+            else:
+                print(f"{MERAH}Salah. Jawaban benar: {q['jawaban']}{RESET}")
+        except (ValueError, IndexError):
+            print(f"{MERAH}Input tidak valid!{RESET}")
+    
+    print(f"\n{KUNING}Total Skor: {score}/90{RESET}")
+    return score
+
+def main():
+    print(f"{KUNING}\n=== SELAMAT DATANG DI EDUGAME ===")
+    print("Pilih game edukasi yang tersedia!")
+    print("=================================={RESET}")
+    
+    total_score = 0
+    while True:
+        choice = main_menu()
+        
+        if choice == 1:
+            total_score += math_quiz()
+        elif choice == 2:
+            total_score += vocabulary_quiz()
+        elif choice == 3:
+            total_score += capital_quiz()
+        elif choice == 4:
+            total_score += science_quiz()
+        elif choice == 5:
+            print(f"\n{HIJAU}Terima kasih telah bermain!")
+            print(f"Total Skor Keseluruhan: {total_score}")
+            print(f"=================================={RESET}")
+            sys.exit()
+        
+        print(f"\n{HIJAU}Skor Total Anda Sekarang: {total_score}{RESET}")
+
+if __name__ == "__main__":
+    main()
